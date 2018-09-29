@@ -1,7 +1,10 @@
 ---
 title: hexo使用
 date: 2018-09-29 15:32:51
-tags: hexo
+categories:
+ - hexo
+tags: 
+ - hexo
 ---
 [Hexo](https://hexo.io/zh-cn/docs/)官方文档
 

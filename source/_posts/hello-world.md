@@ -1,6 +1,8 @@
 ---
 title: Hello World
 date: 2018-09-29 15:32:50
+categories:
+- hello world
 tags: hello world
 ---
 

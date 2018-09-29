@@ -1,0 +1,42 @@
+<script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+<!--     <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script> -->
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<body>
+    <div class="row" id="list">
+
+    </div>
+<iframe  id="iframe" width="320" height="330" name="aa" frameborder="2" style="display:none;" src="">1111</iframe>
+<script type="text/javascript"> 
+    var $iframe = $("#iframe");
+    $(document).ready(function(){
+        $.getJSON("/json/config/playerType.json", function (data){
+            if(data){
+                console.log(data[0]['jsonUrl'][0].split(":"));
+                $.getJSON("/json/"+data[0].jsonPath+"/"+data[0]['jsonUrl'][0].split(":")[1], function (data2){
+                    var html = "";
+                    data2.forEach(function(item,index){
+                        // console.log(item);
+                        html += '<div class="col-xs-6 col-sm-4 col-lg-3">' +
+                            '            <div class="thumbnail">' +
+                            '                <img  style="width:180px;height:236px;" src="http:'+item.img+'" alt="...">' +
+                            '                <div class="caption">' +
+                            '                    <p>'+item.title+'</p>' +
+                            '                    <p>...</p>' +
+                            '                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>' +
+                            '                </div>' +
+                            '            </div>' +
+                            '        </div>';
+                    })
+
+                    $("#list").html(html);
+                });
+            }
+        });
+    });
+</script>
+<![endif]-->
+</body>
+</html>

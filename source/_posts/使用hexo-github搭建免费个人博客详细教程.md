@@ -1,7 +1,10 @@
 ---
 title: 使用hexo+github搭建免费个人博客详细教程
 date: 2018-09-29 16:01:44
-tags:
+categories:
+tags: 
+- hexo 
+- github
 ---
 
 转载至 [小茗同学的博客园](https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html)
