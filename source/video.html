@@ -4,13 +4,40 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style type="text/css">
+    .videoimg{
+        width: 180px;
+        height: 236px;
+    }
+</style>
 <body>
-    <div class="row" id="list">
+    <!--<div class="row" id="list">-->
+
+    <!--</div>-->
+<!--<iframe  id="iframe" width="320" height="330" name="aa" frameborder="2" style="display:none;" src="">1111</iframe>-->
+    <div class="row hidden-sm" id="list">
 
     </div>
-<iframe  id="iframe" width="320" height="330" name="aa" frameborder="2" style="display:none;" src="">1111</iframe>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document" style="width: 800px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="closemodal()" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <script type="text/javascript"> 
     var $iframe = $("#iframe");
+    var apis = ['http://yun.baiyug.cn/vip/?url=','http://jx.618g.com/?url='],apiIndex = 0;
     $(document).ready(function(){
         $.getJSON("/json/config/playerType.json", function (data){
             if(data){
@@ -18,14 +45,12 @@
                 $.getJSON("/json/"+data[0].jsonPath+"/"+data[0]['jsonUrl'][0].split(":")[1], function (data2){
                     var html = "";
                     data2.forEach(function(item,index){
-                        // console.log(item);
-                        html += '<div class="col-xs-6 col-sm-4 col-lg-3">' +
+                        html += '<div class="col-xs-6 col-sm-4 col-md-3">' +
                             '            <div class="thumbnail">' +
-                            '                <img  style="width:180px;height:236px;" src="http:'+item.img+'" alt="...">' +
+                            '                <img class="videoimg" src="'+item.img+'" alt="'+item.title+'">' +
                             '                <div class="caption">' +
-                            '                    <p>'+item.title+'</p>' +
-                            '                    <p>...</p>' +
-                            '                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>' +
+                            '                    <p title="'+item.title+'" style="width:130px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">'+item.title+'</p>' +
+                            '                    <p><button type="button" class="btn btn-primary btn-xs" style="padding:0 35px;" data-toggle="modal" data-target="#myModal" onclick="play(\''+item.title+'\',\''+item.href+'\')">播放</button></p>' +
                             '                </div>' +
                             '            </div>' +
                             '        </div>';
@@ -36,6 +61,17 @@
             }
         });
     });
+
+    function play(title,url){
+        var path = apis[apiIndex]+url;
+        var html = '<iframe id="iframe" width="750" height="550" name="aa" frameborder="2" src="'+path+'"></iframe>';
+        $(".modal-body").html(html);
+        $("#myModalLabel").html(title);
+    }
+
+    function closemodal(){
+        $(".modal-body").html('');
+    }
 </script>
 <![endif]-->
 </body>
